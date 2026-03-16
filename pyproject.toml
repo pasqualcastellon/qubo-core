@@ -1,4 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
-dependencies = [
-  "qubo-core @ git+ssh://git@github.com:pasqualcastellon/qubo-core.git@v0.1.0"
+name = "stt-qubo-core"
+version = "0.1.0"
+description = "Reusable QUBO core library for API and HPC execution"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "CADT" }
 ]
+dependencies = [
+  "pydantic>=2.0",
+  "dimod>=0.12"
+]
+
+[project.urls]
+Homepage = "https://github.com/pasqualcastellon/qubo-core"
+Repository = "https://github.com/pasqualcastellon/qubo-core"
+Issues = "https://github.com/pasqualcastellon/qubo-core/issues"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stt_qubo_core"]
