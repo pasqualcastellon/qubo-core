@@ -1,0 +1,4 @@
+[project]
+dependencies = [
+  "qubo-core @ git+ssh://git@github.com:pasqualcastellon/qubo-core.git@v0.1.0"
+]
