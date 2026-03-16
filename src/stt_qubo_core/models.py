@@ -3,4 +3,4 @@ from .value_objects import QuboDict
 
 class QuboProblem(BaseModel):
     qubo: QuboDict
-    num_reads: int = Field(default=100, gt=0)
+    num_reads: int = Field(default=10, gt=0)
