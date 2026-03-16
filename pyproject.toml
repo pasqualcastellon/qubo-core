@@ -4,16 +4,16 @@ build-backend = "hatchling.build"
 
 [project]
 name = "stt-qubo-core"
-version = "0.1.3"
+version = "0.1.4"
 description = "Reusable QUBO core library for API and HPC execution"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
   { name = "CADT" }
 ]
 dependencies = [
-  "pydantic>=2.0",
+  "pydantic>=2.11",
   "dimod>=0.12"
 ]
 
