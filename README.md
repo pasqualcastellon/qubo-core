@@ -1,2 +1,88 @@
 # qubo-core
-core module for qubo experiment
+
+Reusable QUBO core library for solving Quadratic Unconstrained Binary Optimization problems, designed for API and HPC execution.
+
+## Installation
+
+```bash
+pip install stt-qubo-core
+```
+
+## Usage
+
+```python
+from stt_qubo_core import (
+    QuboProblem, QuboDict,
+    QuboService, DimodSimulatedAnnealingSolver
+)
+
+qubo = QuboDict(data={
+    (0, 0): -1.0,
+    (1, 1): -1.0,
+    (0, 1):  2.0,
+})
+
+problem = QuboProblem(qubo=qubo, num_reads=100)
+service = QuboService(solver=DimodSimulatedAnnealingSolver())
+result = service.solve(problem)
+
+for sol in result.solutions:
+    print(sol.energy, sol.sample)
+```
+
+### Custom solver
+
+Implement the `QuboSolverPort` protocol and inject it into `QuboService`:
+
+```python
+from stt_qubo_core import QuboProblem, QuboSolverPort, QuboSolveResult, QuboService
+
+class MyRemoteSolver:
+    def solve(self, problem: QuboProblem) -> QuboSolveResult:
+        ...
+
+service = QuboService(solver=MyRemoteSolver())
+```
+
+## Development
+
+```bash
+pip install -e ".[dev]"
+pytest tests/
+```
+
+## Publishing to PyPI
+
+Publishing is automated via GitHub Actions (`.github/workflows/publish.yml`). The workflow triggers when a GitHub Release is published.
+
+### Prerequisites
+
+In **GitHub → Settings → Environments**, create an environment named `pypi` and add a secret `PYPI_API_TOKEN` with your PyPI API token.
+
+### Steps
+
+**1. Bump the version** in `pyproject.toml`:
+
+```toml
+[project]
+version = "0.2.0"
+```
+
+**2. Commit and push** to the main branch.
+
+**3. Create a GitHub Release:**
+- Go to **GitHub → Releases → Draft a new release**
+- Create a tag matching the version (e.g. `v0.2.0`)
+- Click **Publish release**
+
+The workflow will build the package and publish it to PyPI automatically.
+
+### Verify
+
+```bash
+pip install stt-qubo-core==<version>
+```
+
+## License
+
+MIT

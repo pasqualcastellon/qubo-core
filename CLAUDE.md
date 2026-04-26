@@ -59,3 +59,13 @@ service = QuboService(solver=MyCustomSolver())
 - PyPI name: `stt-qubo-core`; importable as `stt_qubo_core`
 - Python ≥ 3.10 required (uses `dict[tuple[int, int], float]` type syntax)
 - Build backend: `hatchling`
+
+## Publishing
+
+Publishing is automated via `.github/workflows/publish.yml`, triggered by publishing a GitHub Release.
+
+1. Bump `version` in `pyproject.toml`
+2. Commit and push to main
+3. Create a GitHub Release with a tag (e.g. `v0.2.0`) — the workflow builds and uploads to PyPI automatically
+
+Requires a GitHub Environment named `pypi` with a `PYPI_API_TOKEN` secret configured in GitHub → Settings → Environments.
