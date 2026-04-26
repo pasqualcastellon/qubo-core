@@ -68,4 +68,4 @@ Publishing is automated via `.github/workflows/publish.yml`, triggered by publis
 2. Commit and push to main
 3. Create a GitHub Release with a tag (e.g. `v0.2.0`) — the workflow builds and uploads to PyPI automatically
 
-Requires a GitHub Environment named `pypi` with a `PYPI_API_TOKEN` secret configured in GitHub → Settings → Environments.
+Requires a GitHub Environment named `pypi` with a `PYPI_API_TOKEN` secret configured in GitHub → Settings → Environments. See [PUBLISH.md](PUBLISH.md) for full instructions.
